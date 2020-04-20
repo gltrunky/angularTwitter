@@ -2,5 +2,5 @@
 
 <div *ngFor="let tw of tws">
     <p>{{ tw.message }}</p>
-    <p>{{ tw.created_at }}</p>
+    <p>{{ tw.created_at | date:'medium' }}</p>
 </div>

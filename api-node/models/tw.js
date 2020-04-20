@@ -13,7 +13,8 @@ const Tw = db.define('tw', {
 }, {
     /* timestamps: false, */
     underscored: true,
-    /*freezeTableName: true,*/
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     tableName: 'tw'
 });
 
