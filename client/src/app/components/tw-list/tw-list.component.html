@@ -1,1 +1,6 @@
-<p>tw-list works!</p>
+<h1>Twitters</h1>
+
+<div *ngFor="let tw of tws">
+    <p>{{ tw.message }}</p>
+    <p>{{ tw.created_at }}</p>
+</div>

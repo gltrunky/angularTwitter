@@ -10,4 +10,4 @@ $sth = $dbh->prepare("SELECT * FROM tw");
 $sth->execute();
 
 header('Content-type: application/json');
-echo json_encode($sth->fetchAll());
+echo json_encode($sth->fetchAll(PDO::FETCH_ASSOC));

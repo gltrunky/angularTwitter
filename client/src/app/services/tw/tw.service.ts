@@ -9,13 +9,13 @@ import { Tw } from '../../models/tw';
 })
 export class TwService {
 
-  private url = 'http://127.0.0.1:3000';
+  private url = 'http://127.0.0.1/tw/api-php';
 
   constructor(
     private http: HttpClient
   ) { }
 
   getTws(): Observable<Tw[]> {
-    return this.http.get<Tw[]>(this.url+"/tw");
+    return this.http.get<Tw[]>(this.url+"/tw.php");
   }
 }
