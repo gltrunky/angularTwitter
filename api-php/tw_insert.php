@@ -5,7 +5,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
 
 if (isset($_POST['message'])) {
-    $dbh = new PDO('mysql:dbname=tw;host=127.0.0.1', 'root', 'root');
+    $dbh = new PDO('mysql:dbname=twitter;host=127.0.0.1', 'root', 'root');
     $sth = $dbh->prepare("INSERT INTO tw (id, message) VALUES (null, :message)");
 
     $sth->execute(array(
