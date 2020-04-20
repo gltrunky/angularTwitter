@@ -14,16 +14,27 @@ export class TwService {
   ) { }
 
   /** Version Node */
-  private url = 'http://127.0.0.1:3000';
+  private urlNode = 'http://127.0.0.1:3000';
 
   getTws(): Observable<Tw[]> {
-    return this.http.get<Tw[]>(this.url+"/tw");
+    return this.http.get<Tw[]>(this.urlNode+"/tw");
+  }
+
+  saveTw(tw: Tw): Observable<Tw> {
+    return this.http.post<Tw>(this.urlNode+"/tw", tw);
   }
 
   /** Version PHP */
-  /*private url = 'http://127.0.0.1/tw/api-php';
+  private urlPHP = 'http://127.0.0.1/tw/api-php';
 
-  getTws(): Observable<Tw[]> {
-    return this.http.get<Tw[]>(this.url+"/tw.php");
-  }*/
+  getPHPTws(): Observable<Tw[]> {
+    return this.http.get<Tw[]>(this.urlPHP+"/tw.php");
+  }
+
+  postPHPTw(tw: Tw): Observable<Tw> {
+    const formData = new FormData();
+    formData.append('message', tw.message);
+    formData.append('user_id', ""+tw.user_id);
+    return this.http.post<Tw>(this.urlPHP+"/tw_insert.php", formData)
+  }
 }

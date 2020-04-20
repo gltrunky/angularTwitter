@@ -1,6 +1,8 @@
 <h1>Twitters</h1>
 
+<app-tw-form-add></app-tw-form-add>
+
 <div *ngFor="let tw of tws">
     <p>{{ tw.message }}</p>
-    <p>{{ tw.created_at | date:'medium' }}</p>
+    <p>{{ tw.created_at | date:'dd/MM/y' }}</p>
 </div>

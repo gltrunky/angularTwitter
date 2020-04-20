@@ -1,15 +1,15 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST');
-header("Access-Control-Allow-Headers: X-Requested-With");
+header("Access-Control-Allow-Headers: Origin, Accept, X-Requested-With, Content-Type");
 
 if (isset($_POST['message'])) {
     $dbh = new PDO('mysql:dbname=twitter;host=127.0.0.1', 'root', 'root');
-    $sth = $dbh->prepare("INSERT INTO tw (id, message) VALUES (null, :message)");
+    $sth = $dbh->prepare("INSERT INTO tw (id, message, user_id) VALUES (null, :message, :user_id)");
 
     $sth->execute(array(
-        'message' => $_POST['message']
+        'message' => $_POST['message'],
+        'user_id'   => $_POST['user_id']
     ));
 
     header('Content-type: application/json');

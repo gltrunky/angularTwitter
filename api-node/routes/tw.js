@@ -13,4 +13,25 @@ Router.get("/", async(req, res) => {
         });
 });
 
+Router.post("/", async(req, res) => {
+    console.log(req.body);
+
+    if (req.body.message && req.body.message != "") {
+        Tw.create({
+                message: req.body.message,
+                user_id: req.body.user_id
+            })
+            .then(async tw => {
+                res.status(200).json({
+                    'message': 'Tw bien créé !'
+                })
+            })
+            .catch(erreur => {
+                res.status(500).json({ 'erreur': erreur })
+            });
+    } else {
+        res.status(500).json({ 'erreur': "Il n'y a pas assez de paramètre" })
+    }
+});
+
 module.exports = Router;
