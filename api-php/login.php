@@ -5,7 +5,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
 
 if (isset($_POST['email']) && isset($_POST['pwd'])) {
-    $dbh = new PDO('mysql:dbname=twitter;host=127.0.0.1', 'root', 'root');
+    $dbh = new PDO('mysql:dbname=twitter;host=127.0.0.1', 'root', '');
 
     $sth = $dbh->prepare("SELECT * FROM user WHERE email = :email AND pwd = :pwd");
 
