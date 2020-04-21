@@ -21,7 +21,7 @@ export class TwListComponent implements OnInit {
   }
 
   getTws(): void {
-    this.twService.getTws()
+    this.twService.getPHPTws()
     .subscribe(tws => this.tws = tws);
   }
 

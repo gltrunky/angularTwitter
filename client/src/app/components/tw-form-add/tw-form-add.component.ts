@@ -13,9 +13,9 @@ export class TwFormAddComponent implements OnInit {
   tw: Tw = {
     id: null,
     message: '',
-    user_id: 1,
-    created_at: null,
-    updated_at: null,
+    id_user: 3,
+    create_at: null,
+    update_at: null,
   };
 
   constructor(
