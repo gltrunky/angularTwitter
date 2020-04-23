@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { TwListComponent } from './components/tw-list/tw-list.component';
 import { TwAddComponent } from './components/tw-add/tw-add.component';
 import { TwFormAddComponent } from './components/tw-form-add/tw-form-add.component';
+import { TwEditComponent } from './components/tw-edit/tw-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TwListComponent,
     TwAddComponent,
-    TwFormAddComponent
+    TwFormAddComponent,
+    TwEditComponent,
   ],
   imports: [
     BrowserModule,

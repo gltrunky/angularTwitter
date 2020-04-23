@@ -25,4 +25,10 @@ export class TwListComponent implements OnInit {
     .subscribe(tws => this.tws = tws);
   }
 
+  deleteTw(tw: Tw) : void {
+    this.tws = this.tws.filter(h => h !== tw);
+    this.twService.deleteTw(tw)
+    .subscribe(res => console.log(res));
+  }
+
 }

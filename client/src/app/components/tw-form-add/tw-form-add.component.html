@@ -1,4 +1,8 @@
-<form>
-    <input [(ngModel)]="tw.message" name="message" placeholder="message" />
-    <input type="button" (click)="saveTw()" value="Enregistrer" />
+<form class="mt-5 mb-4">
+    <div class="input-group mb-3">
+    <input class="form-control" [(ngModel)]="tw.message" name="message" placeholder="Votre message" />
+<div class="input-group-append">
+    <input type="button" class="btn btn-outline-success" (click)="saveTw()" value="Enregistrer" />
+</div>
+</div>
 </form>

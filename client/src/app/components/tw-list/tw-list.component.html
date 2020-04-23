@@ -1,8 +1,17 @@
-<h1>Twitters</h1>
+<div class="container">
+<h1 class="text-center text-light pt-3"><b>Twitters app</b></h1>
 
 <app-tw-form-add></app-tw-form-add>
 
 <div *ngFor="let tw of tws">
-    <p>{{ tw.message }}</p>
-    <p>{{ tw.created_at | date:'dd/MM/y' }}</p>
+    <div class="border border-light rounded-sm bg-dark text-white">
+    <p class="text-left pl-2 pt-1">Ecrit par : <b>{{ tw.id_user }}</b></p>    
+    <p class="text-center pt-3">{{ tw.message }}</p>
+    <p class="text-right pr-2">Posté le : {{ tw.create_at | date:'dd/MM/y' }} <br>Modif le : {{ tw.update_at | date:'dd/MM/y' }}</p>
+</div>
+<div class="mb-2 mt-1 text-right">
+    <a class="btn btn-success" routerLink="/tw/{{tw.id}}">Editer</a>
+    <button class="btn btn-danger" (click)="deleteTw(tw)">Supprimer</button>
+</div>
+</div>
 </div>

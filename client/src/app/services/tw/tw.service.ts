@@ -37,4 +37,8 @@ export class TwService {
     formData.append('id_user', ""+tw.id_user);
     return this.http.post<Tw>(this.urlPHP+"/tw_insert.php", formData)
   }
+
+  deleteTw(tw: Tw): Observable<Tw> {
+    return this.http.delete<Tw>(this.urlPHP+"/tw/" + tw.id);
+  }
 }
