@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : jeu. 16 avr. 2020 à 13:12
--- Version du serveur :  5.7.29-log
--- Version de PHP : 7.4.2
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  jeu. 23 avr. 2020 à 13:08
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `twitter`
+-- Base de données :  `twitter`
 --
 
 -- --------------------------------------------------------
@@ -28,24 +28,30 @@ SET time_zone = "+00:00";
 -- Structure de la table `tw`
 --
 
-CREATE TABLE `tw` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tw`;
+CREATE TABLE IF NOT EXISTS `tw` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_user` int(11) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `tw`
 --
 
-INSERT INTO `tw` (`id`, `message`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Premier tw', 1, '2020-04-16 10:59:36', '2020-04-16 10:59:36'),
-(2, 'Deuxieme tw', 1, '2020-04-16 10:59:36', '2020-04-16 10:59:36'),
-(3, 'test', 1, '2020-04-16 12:02:23', '2020-04-16 12:02:23'),
-(4, 'test', 1, '2020-04-16 12:03:48', '2020-04-16 12:03:48'),
-(5, 'test 2', 1, '2020-04-16 12:05:31', '2020-04-16 12:05:31');
+INSERT INTO `tw` (`id`, `message`, `id_user`, `create_at`, `update_at`) VALUES
+(1, 'Bonjour voici mon premier twitter', 3, '2020-04-20 09:45:06', '2020-04-20 09:45:06'),
+(2, 'coucou voici mon second message', 3, '2020-04-20 11:53:29', '2020-04-20 11:53:29'),
+(3, 'coucou voici mon troisieme message\n', 3, '2020-04-20 12:27:27', '2020-04-20 12:27:27'),
+(6, 'coucou', 3, '2020-04-21 12:00:35', '2020-04-21 12:00:35'),
+(7, 'quatrieme message', 3, '2020-04-21 12:01:35', '2020-04-21 12:01:35'),
+(8, 'cinquieme', 3, '2020-04-21 12:01:59', '2020-04-21 12:01:59'),
+(9, 'sixieme', 3, '2020-04-21 12:10:30', '2020-04-21 12:10:30'),
+(10, 'Bonjour', 3, '2020-04-22 07:24:49', '2020-04-22 07:24:49');
 
 -- --------------------------------------------------------
 
@@ -53,54 +59,32 @@ INSERT INTO `tw` (`id`, `message`, `user_id`, `created_at`, `updated_at`) VALUES
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `pwd`, `created_at`, `updated_at`) VALUES
-(1, 'test@test.com', 'test', '2020-04-16 12:34:39', '2020-04-16 12:34:39'),
-(2, 'ldandoy@gmail.com', 'test', '2020-04-16 12:59:08', '2020-04-16 12:59:08');
+INSERT INTO `user` (`id`, `email`, `pwd`, `create_at`, `update_at`) VALUES
+(3, 'almartin86@yahoo.fr', '1234', '2020-04-20 07:48:10', '2020-04-20 07:48:10');
 
 --
--- Index pour les tables déchargées
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Index pour la table `tw`
+-- Contraintes pour la table `tw`
 --
 ALTER TABLE `tw`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `tw`
---
-ALTER TABLE `tw`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  ADD CONSTRAINT `tw_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
